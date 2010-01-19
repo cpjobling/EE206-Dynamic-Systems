@@ -1,0 +1,15 @@
+#!/bin/tcsh
+
+# Build all lecture notes and slides
+source section.tcsh
+echo "Building all Lecture Notes and Slides in"
+echo "Section: $SECTION"
+echo ""
+
+foreach lecture (Lecture*)
+  (echo cd $lecture; cd $lecture; ./buildit)
+end
+echo ""
+echo "Section Done!"
+
+

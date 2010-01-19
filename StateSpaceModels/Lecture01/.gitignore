@@ -1,0 +1,11 @@
+*.dvi
+*.aux
+*.log
+*.tmp
+defs.tex
+lect*_2up.tex
+lecture*.tex
+slides*.tex
+auto
+*.pdf
+

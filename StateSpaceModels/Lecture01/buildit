@@ -1,0 +1,52 @@
+#!/bin/tcsh
+
+echo source ../../course.tcsh
+source ../../course.tcsh
+echo source ../section.tcsh
+source ../section.tcsh
+set LNO=01
+set FILEDATE="30 September 1999"
+set VERSION="1.1"
+set TITLE='State-Space Models'
+set SHORT_TITLE='' # $z would be interpreted by the shell
+set RIGHT="${TITLE}"
+
+# show build message
+echo source ../../message.tcsh
+source ../../message.tcsh
+
+# make definition file
+echo source ../../defs.tcsh
+source ../../defs.tcsh
+
+# make head
+echo source ../../head.tcsh
+source ../../head.tcsh
+
+#
+# make tail
+echo source ../../tail.tcsh
+source ../../tail.tcsh
+
+foreach type (slides lecture) 
+ set FILE=${type}${LNO}.tex
+ cat /tmp/head.tmp >! $FILE
+ if ($type == "slides") then
+   echo "\documentclass[a4,slidesonly]{seminar}" >> $FILE
+ else 
+   echo "\documentclass[article,a4]{seminar}" >> $FILE
+ endif
+ cat /tmp/tail.tmp >> $FILE
+ cat <<EOF  >> $FILE
+%% END $FILE
+\end{document}
+
+EOF
+
+end
+sed -e "s/^%\\twoup/\\twoup/" < lecture${LNO}.tex >! lect${LNO}_2up.tex
+pdflatex lect${LNO}_2up.tex; latex lect${LNO}_2up.tex
+pdflatex lecture$LNO; latex lecture$LNO
+pdflatex slides$LNO; latex slides$LNO 
+#rm defs.tex slides${LNO}.* lecture${LNO}.* lect${LNO}_2up.*
+
