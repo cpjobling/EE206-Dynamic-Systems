@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
 #Set common variables for course pages
-setenv CODE "EE206"
-setenv MODULE "Dynamic Systems"
+setenv CODE "EGLM03"
+setenv MODULE "Modern Control Systems"
 

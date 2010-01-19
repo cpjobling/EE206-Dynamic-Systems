@@ -1,0 +1,25 @@
+Let us now transform the generalized form of the state equations
+obtained in the last lecture.
+\begin{eqnarray*}
+  \frac{d\mathbf{x}(t)}{dt} &=&
+  \mathbf{A}\mathbf{x}(t)+\mathbf{B}\mathbf{u}(t)\\
+  \mathbf{y}(t)&=&\mathbf{C}\mathbf{x}(t)+\mathbf{D}\mathbf{u}(t)
+\end{eqnarray*}
+Applying the Laplace transform to both sides of this matrix
+equation gives the transform equations
+\begin{eqnarray*}
+  s\mathbf{X}(s)-\mathbf{x}(0) &=&
+  \mathbf{A}\mathbf{X}(s)+\mathbf{B}\mathbf{U}(s)\\
+  \mathbf{Y}(s)&=&\mathbf{C}\mathbf{X}(s)+\mathbf{D}\mathbf{U}(s)
+\end{eqnarray*}
+where $\mathbf{x}(0)$ is the vector of initial conditions vector
+of the states; $\mathbf{X}(s)$ is the state transform vector;
+$\mathbf{U}(s)$ input transform vector; $\mathbf{Y}(s)$ is output
+transform vector.
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "notes"
+%%% End: 

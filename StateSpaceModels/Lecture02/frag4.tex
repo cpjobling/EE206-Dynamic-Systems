@@ -1,0 +1,23 @@
+The transform equations may be solved as follows (the Laplace
+transform operator $s$ is omitted for brevity).
+
+\begin{eqnarray}
+ s\mathbf{X}-\mathbf{x}(0) &=&
+  \mathbf{A}\mathbf{X}+\mathbf{B}\mathbf{U}\nonumber\\
+ s\mathbf{X}-\mathbf{A}\mathbf{X} &=&
+  \mathbf{B}\mathbf{U}+\mathbf{x}(0)\nonumber\\
+ \left[s\mathbf{I}-\mathbf{A}\right]\mathbf{X} &=&
+  \mathbf{B}\mathbf{U}+\mathbf{x}(0)\nonumber\\
+ \mathbf{X} &=&
+  \left[s\mathbf{I}-\mathbf{A}\right]^{-1}\mathbf{B}\mathbf{U}+
+  \left[s\mathbf{I}-\mathbf{A}\right]^{-1}\mathbf{x}(0)\label{eqn:def-of-x}\\
+  \mathrm{and}\nonumber \\
+  \mathbf{Y}&=& \mathbf{C}\mathbf{X}+\mathbf{D}\mathbf{U}\label{eqn:def-of-y}
+\end{eqnarray}
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "notes"
+%%% End: 

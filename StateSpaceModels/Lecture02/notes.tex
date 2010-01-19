@@ -1,0 +1,291 @@
+%% State Space Modelling of Dynamic Systems
+%% Lecture 2: Transforms of State-Space Models
+\def\FileDate{99/10/06}
+\def\FileVersion{1.2}
+% ----------------------------------------------------------------
+% Notes pages *********************************************************
+% ----------------------------------------------------------------
+
+The Laplace transform can be used to convert a differential equation
+into a transfer function. It can also be used to convert a state space
+model into a transfer function. In this lecture we demonstrate how
+this is done and we give an example.
+
+\ifslidesonly
+\begin{slide}
+  \heading{Laplace transform of a vector of functions}
+  \input{frag1}
+\end{slide}
+\fi
+\input{frag1}
+
+\ifslidesonly
+\begin{slide}
+  \heading{Laplace transform of a vector of functions (cont)}
+  \input{frag1a}
+\end{slide}
+\fi
+\input{frag1a}
+
+\ifslidesonly
+\begin{slide}
+  \heading{Example}
+  \input{frag2}
+\end{slide}
+\fi
+\input{frag2}
+\ifslidesonly
+  \begin{slide}
+    \heading{Transform of state equations}
+    \input{frag3}
+  \end{slide}
+\fi
+\input{frag3}
+
+For the system in the example the state vector is defined as
+$\mathbf{x}=[v_{31}, i_1]^{T}$, the input current is $u$, and the output
+variables are all the currents and voltages in the circuit
+$\mathbf{y}=[v_{31}, i_1, v_{32}, v_{21}, i_2]^{T}$. The transformed
+state space model is therefore that shown in
+\sref{slide:slide-l2eg1}.
+\begin{slide}\label{slide:slide-l2eg1}
+\heading{Transformed State-Equations for the Example}
+\begin{eqnarray*} s\left[\begin{array}{c}
+  V_{31} \\
+  I_1
+\end{array}\right]-\left[\begin{array}{c}
+  v_{31}(0) \\
+  i_1(0)
+\end{array}\right]&=&\left[\begin{array}{cc}
+  0 & -1/C \\
+  1/L & -R/L
+\end{array}\right]\left[\begin{array}{c}
+  V_{31} \\
+  I_1
+\end{array}\right]+\left[\begin{array}{c}
+  1/C \\
+  0
+\end{array}\right]\left[U\right]\\
+\left[\begin{array}{c}
+  V_{31} \\
+  I_1 \\
+  V_{32} \\
+  V_{21} \\
+  I_{2}
+\end{array}\right]&=&\left[\begin{array}{cc}
+  1 & 0 \\
+  0 & 1 \\
+  1 & -R \\
+  0 & R \\
+  0 & -1
+\end{array}\right]\left[\begin{array}{c}
+  V_{31} \\
+  I_1
+\end{array}\right]+\left[\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  1
+\end{array}\right]\left[U\right].
+\end{eqnarray*}
+\end{slide}
+
+\ifslidesonly
+\begin{slide}
+\heading{Transfer function from state space models (1)}
+\input{frag4}
+\end{slide}\fi\input{frag4}
+\ifslidesonly
+\begin{slide}\heading{Transfer function from state space models (2)}
+\input{frag5}
+\end{slide}\fi\input{frag5}
+\ifslidesonly
+\begin{slide}\heading{Transfer function from state space models (3)}
+\input{frag6}
+\end{slide}\fi\input{frag6}
+\ifslidesonly
+\begin{slide}\heading{Transfer function from state space models (4)}
+\input{frag7}\end{slide}\fi\input{frag7}
+\ifslidesonly
+\begin{slide}\heading{The Resolvant Matrix}
+\input{frag8}\end{slide}\fi\input{frag8}
+
+For the system in the example, the resolvent matrix is developed
+in \sref{slide:l2eg2}.
+\begin{slide}\label{slide:l2eg2}
+\heading{Resolvent matrix for the example}
+\begin{eqnarray*}
+\mathbf{A}&=&\left[\begin{array}{cc}
+  0 & -1/C \\
+  1/L & -R/L
+\end{array}\right] \\
+s\mathbf{I}-\mathbf{A}&=&\left[
+\begin{array}{cc}
+  s & 0 \\
+  0 & s
+\end{array}
+\right] - \left[
+\begin{array}{cc}
+  0 & -1/C \\
+  1/L & -R/L
+\end{array}
+\right] = \left[
+\begin{array}{cc}
+  s & +1/C \\
+  -1/L & s+R/L
+\end{array}\right] \\
+\left[s\mathbf{I}-\mathbf{A}\right]^{-1}&=&\frac{
+\left[\begin{array}{cc}
+  s+R/L & -1/C \\
+  +1/L & s
+\end{array} \right]
+}{s(s+R/L)+1/(LC)}=\frac{\left[\begin{array}{cc}
+  s+R/L & -1/C \\
+  +1/L & s
+\end{array} \right]}{s^2 + (R/L)s + 1/(LC) }
+\end{eqnarray*}
+\end{slide}
+
+When $\left[s\mathbf{I}-\mathbf{A}\right]^{-1}$ has been obtained,
+then the system transfer function is easily obtained through
+$\mathbf{C}\left[s\mathbf{I}-\mathbf{A}\right]^{-1}\mathbf{B}+\mathbf{D}$.
+For the system in the example, when all outputs are measured, the
+system transfer matrix is that shown in \sref{slide:l2eg3}.
+
+\begin{slide}\label{slide:l2eg3}
+\heading{Transfer matrix for example}
+\begin{eqnarray*}
+\left[\begin{array}{cc}
+  1 & 0 \\
+  0 & 1 \\
+  1 & -R \\
+  0 & R \\
+  0 & -1
+\end{array}\right]
+\left\{\frac{\left[
+\begin{array}{cc}
+  s+R/L & -1/C \\
+ +1/L & s
+\end{array}\right]}{s^2 + (R/L)s +1/(LC)}\right\}
+\left[\begin{array}{c}
+  1/C \\
+  0
+\end{array}\right]
+ &+& \left[\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  1
+\end{array} \right]\\
+= \left[\begin{array}{cc}
+  1 & 0 \\
+  0 & 1 \\
+  1 & -R \\
+  0 & R \\
+  0 & -1
+\end{array}\right]
+\left\{\frac{\left[
+\begin{array}{c}
+  (1/C)s+R/(LC)  \\
+ +1/(LC)
+\end{array}\right]}{s^2 + (R/L)s +1/(LC)}\right\}
+ &+& \left[\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  1
+\end{array} \right]\\
+\end{eqnarray*}
+\end{slide}
+\begin{slide}
+\heading{Transfer matrix for example (completed)}
+\begin{eqnarray*} &=& \frac{1}{s^2 + (R/L)s
++1/(LC)}\left[\begin{array}{c}
+  (1/C)s+R/(LC) \\
+  1/(LC) \\
+  (1/C)s \\
+  R/(LC) \\
+  -1/(LC)
+\end{array}\right] + \left[\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+  0 \\
+  1
+\end{array} \right]\\
+&=& \left[\begin{array}{c}
+  \frac{(1/C)s+R/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{1/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{(1/C)s}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{R/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  -\frac{1/(LC)}{s^2 + (R/L)s
++1/(LC)}+1
+\end{array}\right]
+\end{eqnarray*}
+\end{slide}
+
+In matrix form, when combined with the input and output transforms we
+have the situtaion illustrated in \sref{slide:l2final}.
+Each transfer function relates the corresponding output transform
+to the input transform. For example
+\[V_{31}= \frac{(1/C)s+R/(LC)}{s^2 + (R/L)s
++1/(LC)}\ U.\]
+
+\begin{slide}
+  \label{slide:l2final}
+  \heading{Transform Equations for Example}
+\begin{eqnarray*}
+\mathbf{Y}(s)&=&\left[\mathbf{C}\left[s\mathbf{I}-\mathbf{A}\right]^{-1}\mathbf{B}+\mathbf{D}\right]\mathbf{U}(s)\\
+\mathbf{Y}(s) &=& \mathbf{G}(s)\mathbf{U}(s)\\
+\left[\begin{array}{c}
+  V_{31}(s) \\
+  I_1(s) \\
+  V_{32}(s) \\
+  V_{21}(s) \\
+  I_{2}(s)
+\end{array}\right] &=& \left[\begin{array}{c}
+  \frac{(1/C)s+R/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{1/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{(1/C)s}{s^2 + (R/L)s
++1/(LC)} \\
+  \frac{R/(LC)}{s^2 + (R/L)s
++1/(LC)} \\
+  -\frac{1/(LC)}{s^2 + (R/L)s
++1/(LC)}+1
+\end{array}\right]\mathbf{U}(s).
+\end{eqnarray*}
+\end{slide}
+Note that the denominator is the same for each transfer function,
+and that the order of the numerator is less than the denominator
+except for one case, for which
+\begin{eqnarray*}
+I_2 & = & \left(-\frac{1/(LC)}{s^2 + (R/L)s +1/(LC)}+1\right)U\\
+    & = & \frac{-1/{LC}+s^2 + (R/L)s +1/(LC)}{s^2 + (R/L)s
+    +1/(LC)}\ U
+    \\
+    & = &\frac{s^2 + (R/L)s}{s^2 + (R/L)s
+    +1/(LC)}\ U
+\end{eqnarray*}
+Replacing $s$ by $\frac{d}{dt}$ gives the corresponding
+differential equations relating the dependant variable to the
+input.
+
+
+%----------------------------------------------------------------
+% The end of slides
+% ----------------------------------------------------------------
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "#"
+%%% End: 

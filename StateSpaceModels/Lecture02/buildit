@@ -1,31 +1,24 @@
 #!/bin/tcsh
 
-echo source ../../course.tcsh
 source ../../course.tcsh
-echo source ../section.tcsh
 source ../section.tcsh
-set LNO=01
-set FILEDATE="30 September 1999"
+set LNO=02
+set FILEDATE="7 October 1999"
 set VERSION="1.1"
-set TITLE='State-Space Models'
-set SHORT_TITLE='' # $z would be interpreted by the shell
-set RIGHT="${TITLE}"
+set TITLE='Transforms of State-Space Models'
+set SHORT_TITLE='Transforms' # $z would be interpreted by the shell
+set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
 
 # show build message
-echo source ../../message.tcsh
 source ../../message.tcsh
 
 # make definition file
-echo source ../../defs.tcsh
 source ../../defs.tcsh
 
 # make head
-echo source ../../head.tcsh
 source ../../head.tcsh
-
 #
 # make tail
-echo source ../../tail.tcsh
 source ../../tail.tcsh
 
 foreach type (slides lecture) 
@@ -49,4 +42,3 @@ pdflatex lect${LNO}_2up.tex; pdflatex lect${LNO}_2up.tex
 pdflatex lecture$LNO; pdflatex lecture$LNO
 pdflatex slides$LNO; pdflatex slides$LNO 
 #rm defs.tex slides${LNO}.* lecture${LNO}.* lect${LNO}_2up.*
-
