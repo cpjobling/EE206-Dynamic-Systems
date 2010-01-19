@@ -1,0 +1,356 @@
+%% State Space Modelling of Dynamic Systems
+%% Lecture 4: Time Response of a State-Space Model
+\def\FileDate{98/10/14}
+\def\FileVersion{1.0}
+% ----------------------------------------------------------------
+% Notes pages *********************************************************
+% ----------------------------------------------------------------
+
+In this lecture we shall determine the time response of a system
+represented by a state-space model. We shall take as a starting
+point the transformed state space model developed in the last
+lecture. It is possible to derive the time response directly in
+the time domain from the state-equations. I believe however, that
+the following development will be easier to understand. I advise
+you to consult any text book for the time domain development.
+
+In the last lecture, we showed that the state space model was
+\ssmodeltd{} and that the transformed equation was  \ssmodelfd{}
+In this lecture we will show how the time response of the state
+space model may be derived from the transformed model.
+
+\section*{Zero Input Response}
+\label{sec:zero_input_response} We first consider the response of
+the system to its initial conditions and zero input. This is the
+\emph{zero input response} or homogeneous response of the system.
+With the input transform $U(s)=0$ the state equation becomes
+\[\mathbf{X}(s)=\resolvent{}\mathbf{x}(0).\] We define
+\[\Phis{} = \resolvent{}\] so that
+\begin{equation}\label{eq:l4eq1}
+\mathbf{X}(s)=\Phis{}\mathbf{x}(0)
+\end{equation} is the
+transform of the zero input state response. In the time domain,
+the corresponding state response is given by the inverse Laplace
+transform of equation~(\ref{eq:l4eq1})
+\begin{equation}
+\label{eq:l4eq2} \mathbf{x}(t) = \mathcal{L}^{-1}
+\left\{\Phis{}\mathbf{x}(0)\right\},\end{equation} which, since
+the initial condition vector $\mathbf{x}(0)$ is a vector of
+constants becomes:
+\begin{eqnarray}
+\mathbf{x}(t) & = & \mathcal{L}^{-1}
+\left\{\Phis{}\right\}\mathbf{x}(0)\nonumber \\ & = &
+\phit{}\mathbf{x}(0).\label{eq:l4eq3}
+\end{eqnarray}
+\section*{State Transition
+Matrix}\label{sec:state_transition_matrix} The vector of time
+functions $\phit{}$ is known as the \emph{state transition
+matrix}. It defines the motion (or \emph{trajectory}) of the state
+variables through the $n$-dimensional \emph{state space} from a
+given set of initial states.
+\begin{slide}\label{slide:l4slide1}
+\heading{State Transition Matrix} The \emph{resolvent matrix} is
+defined as \[\Phis{} = \resolvent =
+\frac{\adjsIminusA}{\detsIminusA}.\] The resolvent matrix is a
+matrix of rational polynomials in the Laplace transform variable
+$s$. The state transition matrix is
+\[\phit{}
+=
+\mathcal{L}^{-1}\left\{\frac{\adjsIminusA}{\detsIminusA}\right\}.\]
+What is the form of this function?
+\end{slide}
+\begin{slide}\label{slide:l4slide2}
+\heading{Characteristic Polynomial} The adjoint matrix
+$\adjsIminusA$ is a matrix of polynomials each of which is of
+order $n-1$ or less. The determinant
+\[\detsIminusA{} = \left|\begin{array}{cccc}
+  s-a_{11} & -a_{12} & \cdots & -a_{1n} \\
+  -a_{21} & s-a_{22} & \cdots & -a_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  -a_{n1} & -a_{2n} & \cdots & s-a_{nn}
+\end{array}\right|\] is called the \emph{characteristic polynomial}. It
+is always a polynomial of degree $n$. Therefore each element of
+the resolvent matrix $\Phis{}$ is of the form
+\[\frac{b_{n-1}s^{n-1}+ \cdots + b_0}{s^n + a_{n-1}s^{n-1}+\cdots+a_0}.\]
+\end{slide}
+\begin{slide}\label{slide:l4slide3}
+\heading{System Characteristic (or Eigen) Values} The coefficients
+$b_i$ of each element of the resolvent matrix $\Phis{}$ depend on
+the form of the system. The characteristic polynomial
+$\detsIminusA$ is the common denominator of all elements of
+$\Phis{}$. It may be factorized:
+\begin{eqnarray*}
+\detsIminusA{}&=&s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0
+\\
+&=&(s - p_1)(s-p_2)\cdots(s-p_n)
+\end{eqnarray*}
+The values $p_i$ are known as the \emph{characteristic} (or
+\emph{eigen}) values of the state matrix $\mathbf{A}$. The
+characteristic values are the \emph{poles} of the
+system!
+\end{slide}
+\begin{slide}\label{slide:l4slide4}
+\heading{The Zero Input Response} If we make a partial fraction
+expansion of the characteristic equation, then for the $i$-$j$th
+element of the resolvent matrix we have
+\[\Phi_{ij}(s)=\frac{r_1}{s-p_1}+\frac{r_2}{s-p_2} + \cdots +
+\frac{r_n}{s-p_n}\](where the coefficient $r_i$ is the so called
+\emph{residue} of the partial fraction expansion determined at the
+value $s=p_i$). Inverse Laplace transforming this equation we
+finally obtain the \emph{state transition} function:
+\[\phi_{ij}(t) = r_1 e^{p_1 t} + r_2 e^{p_2 t} + \cdots + r_n
+e^{p_n t}.\]
+\end{slide}
+\begin{slide}\label{slide:l4slide5}
+\heading{System ``Modes''} The state transition matrix $\phit{}$
+is an $n\times n$ matrix, each element of which is a linear
+combination of the $n$ ``mode functions'' (or simply \emph{modes})
+\[e^{p_1 t},\ e^{p_2 t},\ \ldots,\ e^{p_n t}.\] Each mode is constructed from the
+eigen values ($p_1,\ p_2,\ \ldots,\ p_n$) of the state matrix
+$\mathbf{A}$. The eigen values are also known as the \emph{poles}
+of the system.
+\end{slide}
+\subsection*{Example}
+If \[\mathbf{A} = \left[\begin{array}{cc}
+  0 & 1 \\
+  -6 & -5
+\end{array}\right]\] \[\sIminusA = \left[\begin{array}{cc}
+  s & -1 \\
+  6 & s+5
+\end{array}\right]\] so \[\detsIminusA = s^2 + 5s + 6 = (s+2)(s+3).\]
+The characteristic values of the system are $p_1=-2$ and $p_2=-3$
+so the modes are $e^{-2t}$ and $e^{-3t}$.
+
+Now \[\adjsIminusA = \left[\begin{array}{cc}
+  s+5 & 1 \\
+  -6 & s
+\end{array}\right]\] so the resolvent matrix is \[\Phis{} = \left[\begin{array}{cc}
+  \frac{s+5}{(s+2)(s+3)} & \frac{1}{(s+2)(s+3)} \\
+  \frac{-6}{(s+2)(s+3)} & \frac{s}{(s+2)(s+3)}
+\end{array}\right].\] Expanding each element of $\Phis$ we get
+\[\Phis{} = \left[\begin{array}{cc}
+  \frac{3}{s+2}-\frac{2}{s+3} & \frac{1}{s+2}-\frac{1}{s+3} \\
+  \frac{-6}{s+2}+\frac{6}{s+3} & -\frac{2}{s+2}+\frac{3}{s+3}
+\end{array}\right].\] Inverse Laplace transforming this we get the final state
+transition matrix, representing the zero-input response of the
+system: \[\phit{}=\left[\begin{array}{cc}
+  3e^{-2t}-2e^{-3t} & e^{-2t}-e^{-3t} \\
+ -6e^{-2t}+6e^{-3t} & -2e^{-2t}+3e^{-3t}
+\end{array}\right].\]
+
+Note that, by an alternative derivation\footnote{%
+For a first order differential equation \[\frac{dx}{dt}=ax\] so
+the Laplace transform is \begin{eqnarray*}sX(s) - x(0) & = &
+aX(s)\\ X(s)(s - a)& = & x(0)\\ X(s)
+&=&\frac{x(0)}{s-a}.\end{eqnarray*} The inverse laplace transform
+of the final equation gives \[x(t) = e^{at}.\] For the vector case
+\[s\mathbf{X}(s)-\mathbf{x}(0)=\mathbf{A}\mathbf{X(s)}\] so by comparison
+\[\mathbf{x}(t)=e^{\mathbf{A} t}.\] The proper proof is of course
+a little more involved!}, we can show that
+\[\phit{}=e^{\mathbf{A}t}\] where $e^{\mathbf{A}t}$ is called the matrix exponential.
+
+\section*{The Zero State Response}
+We now consider the case where the initial condition vector
+$\mathbf{x}(0)=\mathbf{0}$ and we will obtain the response of the
+system to an input. This is called the \emph{zero state response}
+of the system.
+
+\begin{slide} \label{slide:l4s11}
+\heading{Zero State Response}
+For zero initial conditions we have
+\begin{eqnarray}\label{eq:l4eq6}
+  \mathbf{X}(s)&=&\resolvent{}\mathbf{B}\mathbf{U}(s) \\
+&=& \Phis{}\mathbf{B}\mathbf{U}(s) \label{eq:l4eq7}
+\end{eqnarray}
+The system output transform (see last lecture) is given by
+\begin{equation}\label{eq:l4eq8}
+ \mathbf{Y}(s)=\left[\mathbf{C}\Phis{}\mathbf{B}+\mathbf{D}\right]\mathbf{U}(s)
+\end{equation} (where $\mathbf{C}\Phis{}\mathbf{B}+\mathbf{D}$ is the system transfer
+matrix).
+\end{slide}
+\begin{slide}\label{slide:l4s12}
+\heading{Zero State Response (Example)} Let
+\begin{eqnarray*}\dot{\mathbf{x}}&=&\left[\begin{array}{cc}
+  0 & 1 \\
+  6 & -5
+\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}
+  2 & 1 \\
+ -1 & 0
+\end{array}\right]\mathbf{u}\\
+\mathbf{y}&=&\left[\begin{array}{cc}
+  2 & -1 \\
+  0 & 1
+\end{array}\right]\mathbf{x}\\ \mathbf{u}&=&\left[\begin{array}{c}
+  e^{-t} \\
+  \epsilon(t)
+\end{array}\right].
+\end{eqnarray*}
+\end{slide}
+\begin{slide}\label{slide:l4s13}
+\heading{Zero State Response: Transfer Function} The transfer
+function is \begin{eqnarray*}
+\mathbf{G}(s)&=&\mathbf{C}\Phis{}\mathbf{B} =
+\left[\begin{array}{cc}
+  2 & -1 \\
+  0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+  \frac{s+5}{(s+2)(s+3)} & \frac{1}{(s+2)(s+3)} \\
+  \frac{-6}{(s+2)(s+3)} & \frac{s}{(s+2)(s+3)}
+\end{array}\right]\left[\begin{array}{cc}
+  2 & 1 \\
+ -1 & 0
+\end{array}\right]\\
+&=&\left[\begin{array}{cc}
+  2 & -1 \\
+  0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+  \frac{2s+9}{(s+2)(s+3)} & \frac{s+5}{(s+2)(s+3)} \\
+  \frac{-s-12}{(s+2)(s+3)} & \frac{-6}{(s+2)(s+3)}
+\end{array}\right]\\
+&=& \left[\begin{array}{cc}
+  \frac{5s+30}{(s+2)(s+3)} & \frac{2s+16}{(s+2)(s+3)} \\
+   \frac{-s-12}{(s+2)(s+3)} & \frac{-6}{(s+2)(s+3)}
+\end{array}\right]
+\end{eqnarray*}
+\end{slide}
+\begin{slide}\label{slide:l4s14}
+\heading{Output Transform} The transform of the input vector is
+\[\mathbf{U}(s) = \mathcal{L}\left[\begin{array}{c}
+  e^{-t} \\
+  \epsilon(t)
+\end{array}\right] = \left[\begin{array}{c}
+  \frac{1}{s+1} \\
+  \frac{1}{s}
+\end{array}\right].\] Hence
+\begin{eqnarray*}\mathbf{Y}(s) &=& \left[\begin{array}{cc}
+  \frac{5s+30}{(s+2)(s+3)} & \frac{2s+16}{(s+2)(s+3)} \\
+   \frac{-s-12}{(s+2)(s+3)} & \frac{-6}{(s+2)(s+3)}
+\end{array}\right]\left[\begin{array}{c}
+  \frac{1}{s+1} \\
+  \frac{1}{s}
+\end{array}\right]\\
+&=&\left[\begin{array}{c}
+  \frac{7s^2+48s+16}{s(s+1)(s+2)(s+3)} \\
+  \frac{-(s^2+18s+6)}{s(s+1)(s+2)(s+3)}
+\end{array}\right] = \left[\begin{array}{c}
+  \frac{8/3}{s}+\frac{25/2}{s+1}-\frac{26}{s+2}+\frac{65/6}{s+3} \\
+   -\frac{1}{s}-\frac{11/2}{s+1}+\frac{13}{s+2}-\frac{13/2}{s+3}
+\end{array}\right]
+\end{eqnarray*}
+\end{slide}
+\begin{slide}\label{slide:l4s15}
+\heading{System Time Response} Inverse Laplace transforming the
+previous result gives the zero-state output response of the
+system: \[\left[\begin{array}{c}
+  \frac{8}{3}\epsilon(t)+\frac{25}{2}e^{-t}-26e^{-2t}+\frac{65}{6}e^{-3t} \\
+   -\epsilon(t)-\frac{11}{2}e^{-t}+13e^{-2t}-\frac{13}{2}e^{-3t}
+\end{array}\right].\]
+Note that response is now a linear combination of the system modes
+($e^{-2t}$ and $e^{-3t}$) and the input modes ($\epsilon(t)$ [the
+unit step function] and $e^{-t}$).
+\end{slide}
+\section*{Full System Response}
+The full system response for the state-space model is simply the
+sum of the zero-state and zero-input responses:
+\begin{eqnarray*}\mathbf{Y}_{\mathrm{full}}(s) &=& \mathbf{Y}_{\mathrm{zs}}(s) +
+\mathbf{Y}_{\mathrm{zi}}(s)\\ &=&
+\mathbf{C}\Phis{}\left[\mathbf{x}(0)+\mathbf{B}\mathbf{U}(s)\right].\end{eqnarray*}
+If the initial condition vector $\mathbf{x}(0)=[-1, 1]^T$ what is
+the total response of the system?
+\begin{slide}\label{slide:l4s16}
+\heading{Total System Response} \begin{eqnarray*} \mathbf{Y}(s)&=&
+\left[\begin{array}{cc}
+  2 & -1 \\
+  0 & 1
+\end{array}\right]
+\left[\begin{array}{cc}
+  \frac{s+5}{(s+2)(s+3)} & \frac{1}{(s+2)(s+3)} \\
+  \frac{-6}{(s+2)(s+3)} & \frac{s}{(s+2)(s+3)}
+\end{array}\right]\\
+&\times& \left\{\left[\begin{array}{c}
+  -1 \\
+  1
+\end{array}\right]+\left[\begin{array}{cc}
+  2 & 1 \\
+  -1 & 0
+\end{array}\right]\left[\begin{array}{c}
+  \frac{1}{s+1} \\
+  \frac{1}{s}
+\end{array}\right]\right\}\\
+&=& \left[\begin{array}{cc}
+  \frac{2s+16}{(s+2)(s+3)} & \frac{-s+2}{(s+2)(s+3)} \\
+  \frac{-6}{(s+2)(s+3)} & \frac{s}{(s+2)(s+3)}
+\end{array}\right]\left[\begin{array}{c}
+  \frac{-s^2+2s+1}{s(s+1)} \\
+  \frac{s^2}{s(s+1)}
+\end{array}\right]
+\end{eqnarray*}
+\end{slide}
+\begin{slide}\label{slide:l4s17}
+\heading{Total System Response (2)} \begin{eqnarray*}
+\mathbf{Y}(s)&=& \left[\begin{array}{c}
+  \frac{-3s^2-10s^2+34s+16}{s(s+1)(s+2)(s+3)} \\
+  \frac{s^3+6s^2-12s-6}{s(s+1)(s+2)(s+3)}
+\end{array}\right]\\
+\mathbf{y}(t)&=& \left[\begin{array}{c}
+  \frac{8}{3}\epsilon(t)+\frac{25}{2}e^{-t}-34e^{-2t}+\frac{95}{6}e^{-3t} \\
+   -\epsilon(t)-\frac{11}{2}e^{-t}+17e^{-2t}-\frac{19}{2}e^{-3t}
+\end{array}\right].
+\end{eqnarray*}
+\end{slide}
+\subsection*{Problems}
+\begin{enumerate}
+\item Prove that the impulse response of a state-space model is
+\begin{eqnarray*}
+\mathbf{g}(t)&=&\mathcal{L}^{-1}\left\{\mathbf{C}\Phis{}\mathbf{B}+\mathbf{D}\right\}\\
+&=&\mathcal{L}^{-1}\left\{\mathbf{G}(s)\right\}
+\end{eqnarray*}
+\item \label{l4q1}
+For the circuit example introduced in Lecture 1, if $L=100$~mH,
+$C=1000$~$\mu$F and $R=20$~$\Omega$, and the output is taken to be
+the voltage $v_{21}(t)$ across the resistor, determine the
+following:
+\begin{enumerate}
+\item The state transition matrix
+\item The zero input response given an initial voltage across the
+capacitor $v_{32}(0)=10$ V and assuming the current in the
+inductor is initially $0$ A.
+\item The zero state output and state variable responses given an input current of
+$i=0.5e^{-t}$ \item The total output response
+\end{enumerate}
+\item Use state-space methods to find the total solution to the
+differential equation
+$$\frac{d^2(t)}{dt^2}+20\frac{dy(t)}{dt}+10y(t) = 16u(t)$$ given
+the initial conditions $\frac{dy(0)}{dt}=1$ and $y(0)=0$ and
+$u(t)=\epsilon(t)$.
+\item Show that the state space models
+\begin{eqnarray*}\dot{\mathbf{x}}&=&\left[\begin{array}{cc}
+  0 & 1 \\
+  -100 & -200
+\end{array}\right]+\left[\begin{array}{c}
+  0 \\
+  200000
+\end{array}\right]u\\ y&=&[1, 0]\mathbf{x}
+\end{eqnarray*} and \begin{eqnarray*}\dot{\mathbf{x}}&=&\left[\begin{array}{cc}
+  -0.50126 & 0 \\
+  0 & -199.5
+\end{array}\right]+\left[\begin{array}{c}
+  1124.2 \\
+  2.0051\times 10^{5}
+\end{array}\right]u\\ y&=&[0.89398   -0.0050125]\mathbf{x}
+\end{eqnarray*} have the same
+input-output relationship (transfer function). Construct the state
+transition matrix $\phit$ and the zero state and zero input output
+response equations for both systems and observe how the modes of
+the system are represented in the system output equations. Compare
+the result with that of question~\ref{l4q1} which has the same
+transfer function! What does this tell you about the transfer
+function as a representation of a system?
+\end{enumerate}
+
+%----------------------------------------------------------------
+% The end of slides
+% ----------------------------------------------------------------
+\endinput

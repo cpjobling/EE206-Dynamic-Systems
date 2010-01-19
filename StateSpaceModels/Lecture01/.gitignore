@@ -8,4 +8,6 @@ lecture*.tex
 slides*.tex
 auto
 *.pdf
+*~
+*.*~
 
