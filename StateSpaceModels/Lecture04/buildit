@@ -3,11 +3,11 @@
 source ../../course.tcsh
 source ../section.tcsh
 set LNO=04
-set filedate="21 October 1999"
-set version="1.1"
-set title='State Space Models from Transfer Functions'
-set short_title='State-Space from Transfer Functions' # $z would be interpreted by the shell
-set right="${short_section}: ${short_title}"
+set FILEDATE="21 October 1999"
+set VERSION="1.1"
+set TITLE='State Space Models from Transfer Functions'
+set SHORT_TITLE='State-Space from Transfer Functions' # $z would be interpreted by the shell
+set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
 
 # show build message
 source ../../message.tcsh
@@ -23,13 +23,13 @@ source ../../tail.tcsh
 
 foreach type (slides lecture) 
  set FILE=${type}${LNO}.tex
- cat $TEMP/head.tmp >! $FILE
+ cat /tmp/head.tmp >! $FILE
  if ($type == "slides") then
    echo "\documentclass[a4,slidesonly]{seminar}" >> $FILE
  else 
    echo "\documentclass[article,a4]{seminar}" >> $FILE
  endif
- cat $TEMP/tail.tmp >> $FILE
+ cat /tmp/tail.tmp >> $FILE
  cat <<EOF  >> $FILE
 %% END $FILE
 \end{document}
@@ -38,10 +38,8 @@ EOF
 
 end
 sed -e "s/^%\\twoup/\\twoup/" < lecture${LNO}.tex >! lect${LNO}_2up.tex
-latex lect${LNO}_2up.tex; latex lect${LNO}_2up.tex
-latex lecture$LNO; latex lecture$LNO
-latex slides$LNO; latex slides$LNO 
-foreach file (*.dvi)
-  dvips $file -o e:/temp/in/$file:r.ps
-end
+pdflatex lect${LNO}_2up.tex; pdflatex lect${LNO}_2up.tex
+pdflatex lecture$LNO; pdflatex lecture$LNO
+pdflatex slides$LNO; pdflatex slides$LNO 
+
 # rm defs.tex slides${LNO}.* lecture${LNO}.* lect${LNO}_2up.*
