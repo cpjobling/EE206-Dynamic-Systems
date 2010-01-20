@@ -9,5 +9,4 @@ foreach section (StateSpaceModels DigitalSystems)
    (echo cd $section; cd $section; ./buildit)
 end
 
-movepdf
 echo "All finished"
