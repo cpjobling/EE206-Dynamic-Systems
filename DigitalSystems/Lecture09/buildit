@@ -1,0 +1,12 @@
+#!/bin/tcsh
+
+source ../../course.tcsh
+source ../section.tcsh
+set LNO=09
+set FILEDATE="25 November 1999"
+set VERSION="1.1"
+set TITLE='Digital System Response'
+set SHORT_TITLE='Digital System Response' # $z would be interpreted by the shell
+set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
+
+source ../../process.tcsh
