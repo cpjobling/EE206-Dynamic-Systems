@@ -38,3 +38,4 @@ mv -f slides${LNO}.pdf ../../slides
 mv -f lect*.pdf ../../handouts
 
 rm -f defs.tex slides*.* lecture*.* lect*_2up.*
+
