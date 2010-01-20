@@ -1,7 +1,7 @@
 #!/bin/tcsh
 
-set section="Introduction to Digital Systems"
-set author="Dr C.P. Jobling"
-set email="C.P.Jobling@Swansea.ac.uk"
-set short_section="Digital Systems"
+set SECTION="Introduction to Digital Systems"
+set AUTHOR="Dr C.P. Jobling"
+set EMAIL="C.P.Jobling@Swansea.ac.uk"
+set SHORT_SECTION="Digital Systems"
 

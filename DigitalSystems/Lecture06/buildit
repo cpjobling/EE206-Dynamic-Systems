@@ -2,11 +2,11 @@
 
 source ../../course.tcsh
 source ../section.tcsh
-set LNO=04
-set FILEDATE="21 October 1999"
+set LNO=06
+set FILEDATE="4 November 1999"
 set VERSION="1.1"
-set TITLE='State Space Models from Transfer Functions'
-set SHORT_TITLE='State-Space from Transfer Functions' # $z would be interpreted by the shell
+set TITLE='Introduction to Digital Systems'
+set SHORT_TITLE='Introduction' # $z would be interpreted by the shell
 set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
 
 # show build message

@@ -7,7 +7,7 @@ echo "Section: $section"
 echo ""
 
 foreach lecture (Lecture*)
-  (cd $lecture; buildit)
+  (cd $lecture; ./buildit)
 end
 echo ""
 echo "Section Done!"

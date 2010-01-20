@@ -25,9 +25,9 @@ foreach type (slides lecture)
  set FILE=${type}${LNO}.tex
  cat /tmp/head.tmp >! $FILE
  if ($type == "slides") then
-   echo "\documentclass[a4,slidesonly]{seminar}" >> $FILE
+   cat ../../slides.tex >> $FILE
  else 
-   echo "\documentclass[article,a4]{seminar}" >> $FILE
+   cat ../../article.tex >> $FILE
  endif
  cat /tmp/tail.tmp >> $FILE
  cat <<EOF  >> $FILE

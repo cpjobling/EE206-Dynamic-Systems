@@ -4,7 +4,6 @@
 cat <<EOF >! /tmp/tail.tmp
 %\usepackage{html}
 \usepackage{verbatim,semhelv,fancybox,sem-a4,times}
-\usepackage{graphics}
 %\usepackage{epsfig}
 
 \input{defs}
