@@ -3,7 +3,7 @@
 # Build all lecture notes and slides
 source section.tcsh
 echo "Building all Lecture Notes and Slides in"
-echo "Section: $section"
+echo "Section: ${SECTION}"
 echo ""
 
 foreach lecture (Lecture*)
@@ -11,5 +11,6 @@ foreach lecture (Lecture*)
 end
 echo ""
 echo "Section Done!"
+
 
 
