@@ -6,40 +6,7 @@ set LNO=04
 set FILEDATE="21 October 1999"
 set VERSION="1.1"
 set TITLE='State Space Models from Transfer Functions'
-set SHORT_TITLE='State-Space from Transfer Functions' # $z would be interpreted by the shell
+set SHORT_TITLE='SS from TF' # $z would be interpreted by the shell
 set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
 
-# show build message
-source ../../message.tcsh
-
-# make definition file
-source ../../defs.tcsh
-
-# make head
-source ../../head.tcsh
-#
-# make tail
-source ../../tail.tcsh
-
-foreach type (slides lecture) 
- set FILE=${type}${LNO}.tex
- cat /tmp/head.tmp >! $FILE
- if ($type == "slides") then
-   cat ../../slides.tex >> $FILE
- else 
-   cat ../../article.tex >> $FILE
- endif
- cat /tmp/tail.tmp >> $FILE
- cat <<EOF  >> $FILE
-%% END $FILE
-\end{document}
-
-EOF
-
-end
-sed -e "s/^%\\twoup/\\twoup/" < lecture${LNO}.tex >! lect${LNO}_2up.tex
-pdflatex lect${LNO}_2up.tex; pdflatex lect${LNO}_2up.tex
-pdflatex lecture$LNO; pdflatex lecture$LNO
-pdflatex slides$LNO; pdflatex slides$LNO 
-
-# rm defs.tex slides${LNO}.* lecture${LNO}.* lect${LNO}_2up.*
+source ../../process.tcsh

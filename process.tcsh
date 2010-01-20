@@ -1,14 +1,5 @@
 #!/bin/tcsh
 
-source ../../course.tcsh
-source ../section.tcsh
-set LNO=06
-set FILEDATE="4 November 1999"
-set VERSION="1.1"
-set TITLE='Introduction to Digital Systems'
-set SHORT_TITLE='Introduction' # $z would be interpreted by the shell
-set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
-
 # show build message
 source ../../message.tcsh
 
@@ -37,4 +28,13 @@ foreach type (slides lecture)
 EOF
 
 end
-source ../../process.tcsh
+
+sed -e "s/^%\\twoup/\\twoup/" < lecture${LNO}.tex >! lect${LNO}_2up.tex
+latex lect${LNO}_2up.tex; latex lect${LNO}_2up.tex
+latex lecture$LNO; latex lecture$LNO
+latex slides$LNO; latex slides$LNO 
+echo Done!
+mv -f slides${LNO}.pdf ../../slides
+mv -f lect*.pdf ../../handouts
+
+rm -f defs.tex slides*.* lecture*.* lect*_2up.*

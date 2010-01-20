@@ -23,13 +23,13 @@ source ../../tail.tcsh
 
 foreach type (slides lecture) 
  set FILE=${type}${LNO}.tex
- cat /tmp/head.tmp >! $FILE
+ cat $TEMP/head.tmp >! $FILE
  if ($type == "slides") then
    cat ../../slides.tex >> $FILE
  else 
    cat ../../article.tex >> $FILE
  endif
- cat /tmp/tail.tmp >> $FILE
+ cat $TEMP/tail.tmp >> $FILE
  cat <<EOF  >> $FILE
 %% END $FILE
 \end{document}
@@ -37,8 +37,4 @@ foreach type (slides lecture)
 EOF
 
 end
-sed -e "s/^%\\twoup/\\twoup/" < lecture${LNO}.tex >! lect${LNO}_2up.tex
-pdflatex lect${LNO}_2up.tex; pdflatex lect${LNO}_2up.tex
-pdflatex lecture$LNO; pdflatex lecture$LNO
-pdflatex slides$LNO; pdflatex slides$LNO 
-#rm defs.tex slides${LNO}.* lecture${LNO}.* lect${LNO}_2up.*
+source ../../process.tcsh
