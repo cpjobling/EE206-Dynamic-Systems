@@ -9,32 +9,5 @@ set TITLE='Introduction to Digital Systems'
 set SHORT_TITLE='Introduction' # $z would be interpreted by the shell
 set RIGHT="${SHORT_SECTION}: ${SHORT_TITLE}"
 
-# show build message
-source ../../message.tcsh
-
-# make definition file
-source ../../defs.tcsh
-
-# make head
-source ../../head.tcsh
-#
-# make tail
-source ../../tail.tcsh
-
-foreach type (slides lecture) 
- set FILE=${type}${LNO}.tex
- cat $TEMP/head.tmp >! $FILE
- if ($type == "slides") then
-   cat ../../slides.tex >> $FILE
- else 
-   cat ../../article.tex >> $FILE
- endif
- cat $TEMP/tail.tmp >> $FILE
- cat <<EOF  >> $FILE
-%% END $FILE
-\end{document}
-
-EOF
-
-end
 source ../../process.tcsh
+

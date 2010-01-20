@@ -1,8 +1,6 @@
 #!/bin/tcsh
 
-echo source ../../course.tcsh
 source ../../course.tcsh
-echo source ../section.tcsh
 source ../section.tcsh
 set LNO=01
 set FILEDATE="30 September 1999"
@@ -11,39 +9,7 @@ set TITLE='State-Space Models'
 set SHORT_TITLE='' # $z would be interpreted by the shell
 set RIGHT="${TITLE}"
 
-# show build message
-echo source ../../message.tcsh
-source ../../message.tcsh
 
-# make definition file
-echo source ../../defs.tcsh
-source ../../defs.tcsh
-
-# make head
-echo source ../../head.tcsh
-source ../../head.tcsh
-
-#
-# make tail
-echo source ../../tail.tcsh
-source ../../tail.tcsh
-
-foreach type (slides lecture) 
- set FILE=${type}${LNO}.tex
- cat $TEMP/head.tmp >! $FILE
- if ($type == "slides") then
-   cat ../../slides.tex >> $FILE
- else 
-   cat ../../article.tex >> $FILE
- endif
- cat $TEMP/tail.tmp >> $FILE
- cat <<EOF  >> $FILE
-%% END $FILE
-\end{document}
-
-EOF
-
-end
 source ../../process.tcsh
 
 
